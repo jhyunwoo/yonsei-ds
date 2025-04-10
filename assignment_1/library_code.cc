@@ -39,6 +39,10 @@ public:
             // 다음 노드 포인터를 current에 저장
             current = current->next;
         }
+        // 만약 노드가 존재하지 않을 경우 -1을 반환
+        if(current == nullptr){
+            return -1;
+        }
         // index 번째 노드의 값을 반환
         return current->val;
     }
