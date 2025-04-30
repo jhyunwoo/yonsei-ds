@@ -156,7 +156,8 @@ char kthCharacter(long long k, std::vector<int>& operations) {
                 result++;
             }
         }
-        // operation에 의해 배열이 2배씩 증가하므로 pos를 2로 나누어 k번째 문자가 복사된 과정을 역추적
+        // operation에 의해 배열이 2배씩 증가하므로 pos를 2로
+        // 나누어 k번째 문자가 복사된 과정을 역추적
         pos /= 2;
         count++;
     }
