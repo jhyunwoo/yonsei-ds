@@ -29,7 +29,7 @@ TEST(findDuplicates, Question5) {
 
   // 모든 값이 중복이 아닐 때
   nums.clear();
-  for (int i = 1; i <= 100000; ++i) {
+  for (int i = 1; i <= 100000; i++) {
     nums.push_back(i);
   }
   rhs = {};
@@ -66,12 +66,12 @@ TEST(resultsArray, Question6) {
   // WRITE EXTRA TESTS
   // 거리가 증가하는 경우
   queries.clear();
-  for (int i = 1; i <= 1000; ++i) {
+  for (int i = 1; i <= 1000; i++) {
     queries.push_back({i, 0});
   }
   k = 1000;
   rhs.clear();
-  for (int i = 1; i <= 1000; ++i) {
+  for (int i = 1; i <= 1000; i++) {
     if (i < k) rhs.push_back(-1);
     else rhs.push_back(i);
   }
@@ -79,12 +79,12 @@ TEST(resultsArray, Question6) {
 
   // 거리가 감소하는 경우
   queries.clear();
-  for (int i = 1000; i >= 1; --i) {
+  for (int i = 1000; i >= 1; i--) {
     queries.push_back({i, 0});
   }
   k = 1;
   rhs.clear();
-  for (int i = 1000; i >= 1; --i) {
+  for (int i = 1000; i >= 1; i--) {
     rhs.push_back(i);
   }
   EXPECT_EQ(resultsArray(queries, k), rhs);
@@ -103,12 +103,12 @@ TEST(resultsArray, Question6) {
 
   // K 값이 클 경우
   queries.clear();
-  for (int i = 0; i < 100000; ++i) {
+  for (int i = 0; i < 1000000000; i++) {
     queries.push_back({i, 0});
   }
-  k = 100000;
+  k = 1000000000;
   rhs.clear();
-  for (int i = 0; i < 100000; ++i) {
+  for (int i = 0; i < 1000000000; i++) {
     if (i < k - 1) {
       rhs.push_back(-1);
     }
@@ -170,7 +170,7 @@ TEST(VectorPQueue, Question7) {
 
   // 대량 삽입 후 정렬 확인
   PQueue* bigQ = new PQueue();
-  for (int i = 10000; i >= 1; --i) {
+  for (int i = 10000; i >= 1; i--) {
     bigQ->enqueue(std::to_string(i));
   }
   EXPECT_EQ(bigQ->extractMin(), "1");
@@ -184,7 +184,7 @@ TEST(VectorPQueue, Question7) {
   // 다수 병합 후 정렬 확인
   PQueue* a = new PQueue();
   PQueue* b = new PQueue();
-  for (int i = 0; i < 5000; ++i) {
+  for (int i = 0; i < 5000; i++) {
     a->enqueue(std::to_string(2 * i));
     b->enqueue(std::to_string(2 * i + 1));
   }
@@ -235,11 +235,11 @@ TEST(HeapPQueue, Question7) {
   // 대량 삽입 후 정렬 확인
   PQueue* bigQ = new PQueue();
   VectorPQueue* bigQTest = new VectorPQueue();
-  for (int i = 10000; i >= 1; --i) {
+  for (int i = 10000; i >= 1; i--) {
     bigQ->enqueue(std::to_string(i));
     bigQTest->enqueue(std::to_string(i));
   }
-  for (int i = 1; i <= 10000; ++i) {
+  for (int i = 1; i <= 10000; i++) {
     EXPECT_EQ(bigQ->extractMin(), bigQTest->extractMin());
   }
   delete bigQ;
@@ -248,11 +248,11 @@ TEST(HeapPQueue, Question7) {
   // 중복 값 처리
   PQueue* dupQ = new PQueue();
   VectorPQueue* dupQTest = new VectorPQueue();
-  for (int i = 0; i < 1000; ++i) {
+  for (int i = 0; i < 1000; i++) {
     dupQ->enqueue("same");
     dupQTest->enqueue("same");
   }
-  for (int i = 0; i < 1000; ++i) {
+  for (int i = 0; i < 1000; i++) {
     EXPECT_EQ(dupQ->extractMin(), dupQTest->extractMin());
   }
   delete dupQ;
@@ -263,7 +263,7 @@ TEST(HeapPQueue, Question7) {
   PQueue* b = new PQueue();
   VectorPQueue* aTest = new VectorPQueue();
   VectorPQueue* bTest = new VectorPQueue();
-  for (int i = 0; i < 5000; ++i) {
+  for (int i = 0; i < 5000; i++) {
     a->enqueue(std::to_string(2 * i));
     aTest->enqueue(std::to_string(2 * i));
     b->enqueue(std::to_string(2 * i + 1));
@@ -271,7 +271,7 @@ TEST(HeapPQueue, Question7) {
   }
   PQueue* merged = PQueue::merge(a, b);
   VectorPQueue* mergedTest = VectorPQueue::merge(aTest, bTest);
-  for (int i = 0; i < 10000; ++i) {
+  for (int i = 0; i < 10000; i++) {
     EXPECT_EQ(merged->extractMin(), mergedTest->extractMin());
   }
   delete merged;
