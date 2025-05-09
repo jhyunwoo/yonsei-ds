@@ -287,17 +287,17 @@ HeapPQueue* HeapPQueue::merge(HeapPQueue* one, HeapPQueue* two) {
     result->queue = new std::string[result->capacity];
 
     // 요소 복사
-    for (int i = 0; i < one->queueSize; ++i) {
+    for (int i = 0; i < one->queueSize; i++) {
         result->queue[i] = one->queue[i];
     }
-    for (int i = 0; i < two->queueSize; ++i) {
+    for (int i = 0; i < two->queueSize; i++) {
         result->queue[one->queueSize + i] = two->queue[i];
     }
 
     result->queueSize = totalSize;
 
     // bubbleDown 함수를 사용하여 정렬
-    for (int i = (result->queueSize - 2) / 2; i >= 0; --i) {
+    for (int i = (result->queueSize - 2) / 2; i >= 0; i--) {
         result->bubbleDown(i);
     }
 
@@ -328,7 +328,7 @@ void HeapPQueue::expandCapacity() {
   // 새로운 heap 생성
   std::string* newElems = new std::string[capacity];
   // 새로운 heap에 기존 heap 추가
-  for (int i = 0; i < queueSize; ++i) {
+  for (int i = 0; i < queueSize; i++) {
     newElems[i] = std::move(queue[i]);
   }
   // 기존 heap 삭제
