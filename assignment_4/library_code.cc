@@ -30,7 +30,7 @@ void question3() {
     cin >> w; // N개의 단어 입력
   }
 
-  // endWord 가 사전에 없다면 변환 불가 → 0 출력 후 종료
+  // endWord 가 사전에 없다면 변환 불가, 0 출력 후 종료
   if (find(dict.begin(), dict.end(), endWord) == dict.end()) {
     cout << 0 << "\n"; 
     return; 
@@ -40,18 +40,18 @@ void question3() {
     dict.push_back(beginWord);
   }
 
-  const int L = beginWord.size(); // 모든 단어의 길이 (문제 가정)
-  const int total = (int)dict.size(); // 사전 총 단어 수 (삽입 후)
+  const int L = beginWord.size(); // 모든 단어의 길이
+  const int total = (int)dict.size(); // 사전 총 단어 수
 
-  unordered_map<string, vector<int>> bucket; // 패턴("*" 치환) ↦ 단어 인덱스 목록
+  unordered_map<string, vector<int>> bucket; // 단어 인덱스 목록
   bucket.reserve(total * L); // 리해싱 최소화 위해 예약
-  auto pat = [&](const string &s, int p) { // 인덱스 p 글자를 '*' 로 치환하여 패턴 생성
+  auto pat = [&](const string &s, int p) { // 인덱스 p 글자를 * 로 치환하여 패턴 생성
     string t = s; 
     t[p] = '*'; 
     return t; 
   };
 
-  // 모든 단어에 대해 각 위치를 '*'로 치환한 패턴을 버킷에 삽입
+  // 모든 단어에 대해 각 위치를 *로 치환한 패턴을 버킷에 삽입
   for (int i = 0; i < total; ++i){
     for (int p = 0; p < L; ++p){
       bucket[pat(dict[i], p)].push_back(i);
@@ -72,7 +72,7 @@ void question3() {
     if (u == T) break; // 목표 단어 도달 시 종료
     const string &w = dict[u]; // 현재 단어 참조
 
-    for (int p = 0; p < L; ++p) { // 매 위치별로 '*'-패턴 탐색
+    for (int p = 0; p < L; ++p) { // 매 위치별로 * 패턴 탐색
       auto &vec = bucket[pat(w, p)];  // 같은 패턴을 공유하는 인접 단어 인덱스 리스트
       for (int v : vec)
         if (dist[v] == -1) { // 아직 방문하지 않은 단어라면
@@ -121,11 +121,11 @@ void question4() {
     }
 
     for(auto [v,c]:g[u]) { // 모든 인접 도시 탐색
-      // 1) 쿠폰 사용 안 함
+      // 쿠폰 사용 안 함
       if(w+c<dist[v][k]) { // 더 짧은 경로 발견 시 갱신
         dist[v][k]=w+c; pq.emplace(dist[v][k],v,k);
       }
-      // 2) 쿠폰 사용 
+      // 쿠폰 사용 
       if(k<D && w+c/2<dist[v][k+1]) { // 쿠폰 남아 있고 더 낫다면 갱신
         dist[v][k+1]=w+c/2; 
         pq.emplace(dist[v][k+1],v,k+1);
@@ -146,7 +146,7 @@ void question5() {
   int N; 
   if(!(cin>>N)) {
     return;
-  } // 밸브(노드) 개수 N 입력
+  } // 밸브 개수 N 입력
 
   // 노드
   struct Node { 
@@ -168,7 +168,7 @@ void question5() {
     }
   }
 
-  vector<vector<int>> adj(N); // 인접 리스트 (인덱스 기반)
+  vector<vector<int>> adj(N); // 인접 리스트
   for(int i=0;i<N;++i){
     for(auto &s:nodes[i].neigh){
       adj[i].push_back(id[s]); // 문자열 이웃을 인덱스로 변환
@@ -183,9 +183,9 @@ void question5() {
       important.push_back(i); // 양수 유량 노드 추가
     }
   }
-  const int K = (int)important.size()-1; // 양수 유량 밸브 수 (≤15, 비트마스크 가능)
+  const int K = (int)important.size()-1; // 양수 유량 밸브 개수
 
-  const int M = (int)important.size(); // 중요 노드 총수 (AA 포함)
+  const int M = (int)important.size(); // 중요 노드 총수
   vector<vector<int>> distMat(M, vector<int>(M, INT_MAX/2)); // 짧은 거리 행렬 초기화
 
   auto bfs=[&](int srcIdx){ // 단일 원본 BFS 람다
@@ -217,7 +217,7 @@ void question5() {
   unordered_map<uint64_t,int> memo; 
   memo.reserve(1<<22); // DP 캐시
 
-  auto keyPack=[&](int pos, int mask, int t){ // 64-bit 키 인코딩
+  auto keyPack=[&](int pos, int mask, int t){ // 키 인코딩
     return (uint64_t)pos | (uint64_t)mask<<6 | (uint64_t)t<<21; // 비트필드: pos(6) + mask(15) + time
   };
 
@@ -232,14 +232,14 @@ void question5() {
     // 현재 밸브 열기
     if (pos != 0) {
       int bit = pos - 1; // AA 제외한 밸브를 0번 비트부터 매핑
-      if (!(mask & (1 << bit)) && time > 1) { // 아직 열지 않았고, 열 시간(1분) 확보
+      if (!(mask & (1 << bit)) && time > 1) { // 아직 열지 않았고, 열 시간 확보
         int gain = (time - 1) * nodes[important[pos]].flow; // (남은시간-1)*유량 = 압력 증가량
         best = max(best, gain + dfs(pos, mask | (1 << bit), time - 1)); // 밸브 열고 재귀
       }
     }
 
     // 다른 밸브로 이동
-    for (int nxt = 1; nxt < M; ++nxt) { // 중요 밸브(AA 제외) 순회
+    for (int nxt = 1; nxt < M; ++nxt) { // 중요 밸브 순회
       if (nxt == pos) {
         continue; // 자기 자신 건너뜀
       }
@@ -247,9 +247,9 @@ void question5() {
       if (mask & (1 << bit)) {
         continue; // 이미 연 밸브는 skip
       }
-      int d = distMat[pos][nxt]; // 현재 → nxt 이동 거리
+      int d = distMat[pos][nxt]; // 현재부터 nxt 이동 거리
       if (d >= time || d == INT_MAX / 2){
-         continue; // 이동할 시간 부족 or 연결 없음
+         continue; // 이동할 시간 부족 또는 연결 없음
       }
       best = max(best, dfs(nxt, mask, time - d)); // 이동만 하고 밸브 열기는 이후 단계에서 처리
     }
