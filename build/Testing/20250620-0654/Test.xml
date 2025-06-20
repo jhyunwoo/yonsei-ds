@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20250620-0654-Experimental"
+	Name="(empty)"
+	Generator="ctest-4.0.1"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="macOS"
+	Hostname="jeonhyeon-uui-MacBookPro.local"
+	OSRelease="15.5"
+	OSVersion="24F74"
+	OSPlatform="arm64"
+	Is64Bits="1"
+	VendorString="Apple"
+	VendorID="Apple"
+	FamilyID="0"
+	ModelID="0"
+	ModelName="Apple M3 Pro"
+	ProcessorCacheSize="131072"
+	NumberOfLogicalCPU="11"
+	NumberOfPhysicalCPU="11"
+	TotalVirtualMemory="1024"
+	TotalPhysicalMemory="18432"
+	LogicalProcessorsPerPhysical="11"
+	ProcessorClockFrequency="0"
+	>
+	<Testing>
+		<StartDateTime>Jun 20 15:54 KST</StartDateTime>
+		<StartTestTime>1750402497</StartTestTime>
+		<TestList/>
+		<EndDateTime>Jun 20 15:54 KST</EndDateTime>
+		<EndTestTime>1750402497</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

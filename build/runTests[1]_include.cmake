@@ -1,0 +1,5 @@
+if(EXISTS "/Users/jhyunwoo/projects/yonsei-ds/build/runTests[1]_tests.cmake")
+  include("/Users/jhyunwoo/projects/yonsei-ds/build/runTests[1]_tests.cmake")
+else()
+  add_test(runTests_NOT_BUILT runTests_NOT_BUILT)
+endif()
