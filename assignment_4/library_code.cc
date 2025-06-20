@@ -19,8 +19,8 @@
 using namespace std;
 
 void question3() {
-  ios::sync_with_stdio(false);  // I/O 동기화 해제
-  cin.tie(nullptr); // cin 과 cout의 tie 해제
+  // ios::sync_with_stdio(false);  // I/O 동기화 해제
+  // cin.tie(nullptr); // cin 과 cout의 tie 해제
 
   string beginWord, endWord; int N; // 시작 단어, 끝 단어, 사전 크기
   if (!(cin >> beginWord >> endWord >> N)) return; // 입력 실패 시 함수 종료
@@ -88,8 +88,8 @@ void question3() {
 
 
 void question4() {
-  ios::sync_with_stdio(false); 
-  cin.tie(nullptr);
+  // ios::sync_with_stdio(false); 
+  // cin.tie(nullptr);
 
   int N, M; 
   if (!(cin >> N >> M)) { // 도시 수 N, 도로 수 M 입력
@@ -139,8 +139,8 @@ void question4() {
 }
 
 void question5() {
-  ios::sync_with_stdio(false); 
-  cin.tie(nullptr);
+  // ios::sync_with_stdio(false); 
+  // cin.tie(nullptr);
 
   int N; 
   if(!(cin>>N)) {

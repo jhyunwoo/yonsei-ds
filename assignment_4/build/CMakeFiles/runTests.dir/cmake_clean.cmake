@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/runTests.dir/test_runner.cc.o"
-  "CMakeFiles/runTests.dir/test_runner.cc.o.d"
   "runTests"
   "runTests.pdb"
   "runTests[1]_tests.cmake"

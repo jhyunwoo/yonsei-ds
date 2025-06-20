@@ -1,5 +1,5 @@
-if(EXISTS "/Users/jhyunwoo/projects/yonsei-ds/assignment_4/build/runTests[1]_tests.cmake")
-  include("/Users/jhyunwoo/projects/yonsei-ds/assignment_4/build/runTests[1]_tests.cmake")
+if(EXISTS "/workspace/build/runTests[1]_tests.cmake")
+  include("/workspace/build/runTests[1]_tests.cmake")
 else()
   add_test(runTests_NOT_BUILT runTests_NOT_BUILT)
 endif()
