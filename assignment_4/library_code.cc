@@ -138,7 +138,6 @@ void question4() {
   cout<<(ans==INF?-1:ans)<<"\n"; // 도달 불가 시 -1, 가능 시 비용 출력
 }
 
-
 void question5() {
   ios::sync_with_stdio(false); 
   cin.tie(nullptr);
@@ -186,11 +185,11 @@ void question5() {
   const int K = (int)important.size()-1; // 양수 유량 밸브 개수
 
   const int M = (int)important.size(); // 중요 노드 총수
-  vector<vector<int>> distMat(M, vector<int>(M, INT_MAX/2)); // 짧은 거리 행렬 초기화
+  vector<vector<int>> distMat(M, vector<int>(M, INT32_MAX/2)); // 짧은 거리 행렬 초기화
 
   auto bfs=[&](int srcIdx){ // 단일 원본 BFS 람다
     int src=important[srcIdx]; // 원본 노드 인덱스
-    vector<int>d(N,INT_MAX/2); 
+    vector<int>d(N,INT32_MAX/2); 
     d[src]=0; // 거리 배열 초기화
     queue<int>q; 
     q.push(src);
@@ -199,7 +198,7 @@ void question5() {
       int u=q.front();
       q.pop();
       for(int v:adj[u]){
-        if(d[v]==INT_MAX/2){
+        if(d[v]==INT32_MAX/2){
           d[v]=d[u]+1; // 미방문 노드 거리 갱신
           q.push(v);
         }
@@ -248,7 +247,7 @@ void question5() {
         continue; // 이미 연 밸브는 skip
       }
       int d = distMat[pos][nxt]; // 현재부터 nxt 이동 거리
-      if (d >= time || d == INT_MAX / 2){
+      if (d >= time || d == INT32_MAX / 2){
          continue; // 이동할 시간 부족 또는 연결 없음
       }
       best = max(best, dfs(nxt, mask, time - d)); // 이동만 하고 밸브 열기는 이후 단계에서 처리
